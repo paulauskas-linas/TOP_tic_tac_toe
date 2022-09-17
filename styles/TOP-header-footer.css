@@ -1,0 +1,88 @@
+/******** Global */
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+*, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0;} 
+
+html {scroll-behavior: smooth; font-size: 16px; height: 100%;}
+@font-face {
+    font-family: "Norse";
+    src: 
+    url("../fonts/Norse-Bold.otf") format("opentype");}
+
+body { font-family: "Andada Pro", serif; font-size: 1rem; overflow-x: hidden; position: relative;} 
+a {text-decoration: none; color: unset;}
+a:visited {color: unset;}
+
+.debug { border: 2px solid red;}
+/******* Global End */
+
+/******* The Odin Project footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 3.5rem;
+    width: 100%;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 0px -5px 5px 0px rgb(90, 90, 90, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    color: rgba(74, 74, 74, 0.7);
+}
+.footer-group {
+    display: flex;
+    align-items: center;
+}
+.odin-group, .profile-group {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
+.profile-image {
+    height: 2rem;
+}
+.odin-group a {
+    text-decoration: none;
+}
+.odin-logo {
+    height: 2.5rem;
+}
+.odin-text {
+    font-family: "Norse";
+    color: #cc9543;
+    font-size: 1rem;
+    width: 7rem;
+    margin-right: -0.5rem;
+}
+/******* Footer end */
+
+/******* Header styles */
+
+header {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 5px 5px 0px rgba(90,90,90,0.3);
+}
+/******* Header End */
+
+/******* Media Queries */
+@media screen and (max-width: 50em) {
+    footer p {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 30em) {
+    footer span {
+        display: none;
+    }
+}
