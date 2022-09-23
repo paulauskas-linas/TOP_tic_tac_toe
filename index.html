@@ -40,8 +40,13 @@
                 <div class="board-cell" data-id="6"></div>
                 <div class="board-cell" data-id="7"></div>
                 <div class="board-cell" data-id="8"></div>
+                <div class="modal-start">
+                    <div class="modal-start-content">
+                        <button class="btn-start">Start The Game</button>
+                    </div>
+                </div>
             </div>
-            <button>Restart</button>
+            <button class="btn-restart">Restart</button>
         </div>
     </main>
     <footer>
@@ -61,5 +66,32 @@
                 </div>
             </div>
     </footer>
+    <div class="modal-difficulty">
+        <div class="modal-difficulty-content">
+            <p>You are about to change difficulty in the middle of the game.</p>
+            <p>It will forfeit this round.</p> 
+            <p>Are you sure?</p>
+            <div class="btn-group-confirmation">
+                <button class="btn-confirm">Confirm</button>
+                <button class="btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-restart">
+        <div class="modal-restart-content">
+            <p>You are about to restart the game.</p>
+            <p>Are you sure?</p>
+            <div class="btn-group-confirmation">
+                <button class="btn-confirm">Confirm</button>
+                <button class="btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-results">
+        <div class="modal-results-content">
+            <h3>Congratulations! You won the game!</h3>
+            <button class="btn-restart">Restart</button>
+        </div>
+    </div>
 </body>
 </html>
