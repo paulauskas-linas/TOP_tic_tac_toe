@@ -18,31 +18,31 @@
         <div class="container">
             <div class="diff-button-group">
                 <div class="difficulty-group">
-                    <input type="radio" name="difficulty" id="easy" checked>
+                    <input type="radio" name="difficulty" id="easy" value="easy" checked>
                     <label for="easy">Easy</label>
                 </div>
                 <div class="difficulty-group">
-                    <input type="radio" name="difficulty" id="normal">
+                    <input type="radio" name="difficulty" id="normal" value="normal">
                     <label for="normal">Normal</label>
                 </div>
                 <div class="difficulty-group">
-                    <input type="radio" name="difficulty" id="hard">
+                    <input type="radio" name="difficulty" id="hard" value="hard">
                     <label for="hard">Hard</label>
                 </div>
             </div>
             <div class="board-container">
-                <div class="board-cell" data-id="0">X</div>
-                <div class="board-cell" data-id="1">0</div>
-                <div class="board-cell" data-id="2"></div>
-                <div class="board-cell" data-id="3"></div>
-                <div class="board-cell" data-id="4"></div>
-                <div class="board-cell" data-id="5"></div>
-                <div class="board-cell" data-id="6"></div>
-                <div class="board-cell" data-id="7"></div>
-                <div class="board-cell" data-id="8"></div>
-                <div class="modal-start">
+                <div class="board-cell" data-row="0" data-col="0"></div>
+                <div class="board-cell" data-row="0" data-col="1"></div>
+                <div class="board-cell" data-row="0" data-col="2"></div>
+                <div class="board-cell" data-row="1" data-col="0"></div>
+                <div class="board-cell" data-row="1" data-col="1"></div>
+                <div class="board-cell" data-row="1" data-col="2"></div>
+                <div class="board-cell" data-row="2" data-col="0"></div>
+                <div class="board-cell" data-row="2" data-col="1"></div>
+                <div class="board-cell" data-row="2" data-col="2"></div>
+                <div class="modal-start visible">
                     <div class="modal-start-content">
-                        <button class="btn-start">Start The Game</button>
+                        <button id="start-game" class="btn-start">Start The Game</button>
                     </div>
                 </div>
             </div>
@@ -72,8 +72,8 @@
             <p>It will forfeit this round.</p> 
             <p>Are you sure?</p>
             <div class="btn-group-confirmation">
-                <button class="btn-confirm">Confirm</button>
-                <button class="btn-cancel">Cancel</button>
+                <button id="confirm-difficulty" class="btn-confirm">Confirm</button>
+                <button id="cancel-difficulty" class="btn-cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -82,15 +82,15 @@
             <p>You are about to restart the game.</p>
             <p>Are you sure?</p>
             <div class="btn-group-confirmation">
-                <button class="btn-confirm">Confirm</button>
-                <button class="btn-cancel">Cancel</button>
+                <button id="confirm-restart" class="btn-confirm">Confirm</button>
+                <button id="cancel-restart" class="btn-cancel">Cancel</button>
             </div>
         </div>
     </div>
     <div class="modal-results">
         <div class="modal-results-content">
-            <h3>Congratulations! You won the game!</h3>
-            <button class="btn-restart">Restart</button>
+            <h3 class="results-message">Congratulations! You won the game!</h3>
+            <button id="start-again" class="btn-restart">Start Again?</button>
         </div>
     </div>
 </body>
