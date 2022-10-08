@@ -7,14 +7,11 @@
     --red: #e04545;
     --light-red: tomato;
 }
-html, body {
+html, body, main, .board-cell {
     height: 100%;
     width: 100%;
 }
-
-main {
-    height: 100%;
-    width: 100%;
+main, .container, .board-container, .board-cell {
     position: relative;
 }
 main, .container {
@@ -24,27 +21,17 @@ main, .container {
     align-items: center;
 }
 .container {
-    position: relative; 
     width: min(calc(100% - calc(0.75 * (80px - 2%))), 600px);
-    /* width: calc(calc(300px + (600 - 300) * ((100vw — 500px) / (1920 – 500)))); */
     aspect-ratio: 1 / 1;
     max-height: 600px;
 }
-
 .board-container {
-    position: relative;
     width: 100%;
     flex-grow: 1;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     place-items: center;
 }
-
-.board-cell {
-    width: 100%;
-    height: 100%;
-}
-
 .board-cell:nth-child(5) {
     border: var(--light-grey) 1px solid;
 }
@@ -59,38 +46,34 @@ main, .container {
     border-bottom: var(--light-grey) 1px solid;
 }
 .board-cell {
-    position: relative;
-    background-color: var(--white);
-    font-size: clamp(20px, 10vw, 90px);
-    text-align: justify;
     display: grid;
     grid-template: 1fr / 1fr;
     place-items: center;
+    background-color: var(--white);
+    font-size: clamp(20px, 10vw, 90px);
+    text-align: justify;
 }
 .board-cell:after {
     content: "";
     display: inline-block;
     width: 100%;
 }
-
 .highlight {
     background-color: var(--grey);
 }
 .board-cell:hover {
     cursor: pointer;
 }
-
 .board-cell:empty:hover::before {
     content: "X";
     vertical-align: middle;
     color: var(--grey);
 }
-
 .diff-button-group {
-    display: flex;
     width: 100%;
-    justify-content: space-around;
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-around;
 }
 input[type="radio"] {
     display: none;
@@ -114,7 +97,6 @@ input[type="radio"]:checked ~ label {
 .btn-restart {
     margin-top: 3rem;
 }
-
 /* MODAL CSS */
 .modal-difficulty, .modal-restart, .modal-results {
     visibility: hidden;
@@ -127,23 +109,20 @@ input[type="radio"]:checked ~ label {
     height: 100%; 
     background-color: rgba(0, 0, 0, 0.3);
 }
-
 .modal-difficulty-content, .modal-restart-content, .modal-results-content {
     position: relative; 
     width: fit-content;
     padding: 1rem; 
     margin: auto; 
-    border-radius: 5px; 
     display: flex;
     flex-direction: column;
     align-items: center; 
+    border-radius: 5px; 
     background-color: var(--white);
 }
-
 .btn-group-confirmation {
     margin-top: 2rem;
 }
-
 .btn-confirm, .btn-cancel, .btn-restart {
     position: relative;
     margin: 0 1rem;
@@ -164,7 +143,6 @@ input[type="radio"]:checked ~ label {
     transition: transform 0.5s; 
 }
 .btn-confirm:hover, .btn-cancel:hover, .btn-restart:hover {
-    /* color: #95a5a6; */
     font-weight: bold;
     cursor: pointer;
 }
