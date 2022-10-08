@@ -59,6 +59,7 @@ main, .container {
     border-bottom: var(--light-grey) 1px solid;
 }
 .board-cell {
+    position: relative;
     background-color: var(--white);
     font-size: clamp(20px, 10vw, 90px);
     text-align: justify;
@@ -71,12 +72,20 @@ main, .container {
     display: inline-block;
     width: 100%;
 }
+
 .highlight {
     background-color: var(--grey);
 }
 .board-cell:hover {
     cursor: pointer;
 }
+
+.board-cell:empty:hover::before {
+    content: "X";
+    vertical-align: middle;
+    color: var(--grey);
+}
+
 .diff-button-group {
     display: flex;
     width: 100%;
