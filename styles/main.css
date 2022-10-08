@@ -1,7 +1,7 @@
 :root {
     --black: black;
     --light-grey: #E5E7EB;
-    --grey: rgba(53, 53, 53, 0.5);
+    --grey: rgba(53, 53, 53, 0.3);
     --white: white;
     --green: #596D48;
     --red: #e04545;
@@ -23,7 +23,8 @@ main, .container {
     justify-content: center;
     align-items: center;
 }
-.container { 
+.container {
+    position: relative; 
     width: min(calc(100% - calc(0.75 * (80px - 2%))), 600px);
     /* width: calc(calc(300px + (600 - 300) * ((100vw — 500px) / (1920 – 500)))); */
     aspect-ratio: 1 / 1;
@@ -58,9 +59,11 @@ main, .container {
     border-bottom: var(--light-grey) 1px solid;
 }
 .board-cell {
-    font-size: 10vw;
+    background-color: var(--white);
+    font-size: clamp(20px, 10vw, 90px);
     text-align: justify;
     display: grid;
+    grid-template: 1fr / 1fr;
     place-items: center;
 }
 .board-cell:after {
@@ -69,7 +72,7 @@ main, .container {
     width: 100%;
 }
 .highlight {
-    background-color: var(--red);
+    background-color: var(--grey);
 }
 .board-cell:hover {
     cursor: pointer;
@@ -104,10 +107,10 @@ input[type="radio"]:checked ~ label {
 }
 
 /* MODAL CSS */
-.modal-difficulty, .modal-restart, .modal-results, .modal-start  {
+.modal-difficulty, .modal-restart, .modal-results {
     visibility: hidden;
     position: fixed; 
-    padding-top: 50px;
+    padding-top: 200px;
     left: 0; 
     top: 0;
     z-index: 12;
@@ -115,14 +118,8 @@ input[type="radio"]:checked ~ label {
     height: 100%; 
     background-color: rgba(0, 0, 0, 0.3);
 }
-.modal-start {
-    position: absolute;
-    padding-top: unset;
-    /* visibility: visible; */
-    display: grid;
-    place-items: center;
-}
-.modal-difficulty-content, .modal-restart-content, .modal-results-content, .modal-start-content {
+
+.modal-difficulty-content, .modal-restart-content, .modal-results-content {
     position: relative; 
     width: fit-content;
     padding: 1rem; 
@@ -133,24 +130,19 @@ input[type="radio"]:checked ~ label {
     align-items: center; 
     background-color: var(--white);
 }
-.modal-start-content {
-    /* height: 100%; */
-    flex-basis: 0;
-    justify-content: center;
-    margin: auto;
-}
+
 .btn-group-confirmation {
     margin-top: 2rem;
 }
 
-.btn-confirm, .btn-cancel, .btn-restart, .btn-start {
+.btn-confirm, .btn-cancel, .btn-restart {
     position: relative;
     margin: 0 1rem;
     border: none;
     background: none;
     font-size: 1.5rem;
 }
-.btn-confirm:after, .btn-cancel:after, .btn-restart:after, .btn-start:after {
+.btn-confirm:after, .btn-cancel:after, .btn-restart:after {
     position: absolute;
     content: "";
     top: 100%;
@@ -162,12 +154,12 @@ input[type="radio"]:checked ~ label {
     transform-origin: right;
     transition: transform 0.5s; 
 }
-.btn-confirm:hover, .btn-cancel:hover, .btn-restart:hover, .btn-start:hover {
+.btn-confirm:hover, .btn-cancel:hover, .btn-restart:hover {
     /* color: #95a5a6; */
     font-weight: bold;
     cursor: pointer;
 }
-.btn-confirm:hover:after, .btn-cancel:hover:after, .btn-restart:hover:after, .btn-start:hover:after {
+.btn-confirm:hover:after, .btn-cancel:hover:after, .btn-restart:hover:after {
     transform: scaleX(1);
     transform-origin: left;
 }

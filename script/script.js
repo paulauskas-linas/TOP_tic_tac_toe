@@ -53,10 +53,8 @@ const gameBoard = (() => {
 const displayController = (() => {
     ///props
     ///cache DOM
-    const boardContainer = document.querySelector('.board-container');
     const boardCells = document.querySelectorAll('.board-cell');
     //Modals
-    const modalStart = document.querySelector('.modal-start');
     const modalDifficulty = document.querySelector('.modal-difficulty');
     const modalRestart = document.querySelector('.modal-restart');
     const modalResults = document.querySelector('.modal-results');
@@ -164,9 +162,6 @@ const displayController = (() => {
         gameBoard.resetBoard();
         gameBoard.changeGameStatus("initial");
         gameFlow.resetWinningCellsLocation();
-    });
-    startBtn.addEventListener('click', () => {
-        hide(modalStart);
     });
     startAgainBtn.addEventListener('click', () => {
         gameBoard.resetBoard();
