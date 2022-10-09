@@ -1,4 +1,3 @@
-//game board module
 const gameBoard = (() => {
     const gameBoardArray = [
         ["", "", ""],
@@ -48,17 +47,11 @@ const gameBoard = (() => {
         isMovesLeft
     };
 })();
-
-//display controller module
 const displayController = (() => {
-    ///props
-    ///cache DOM
     const boardCells = document.querySelectorAll('.board-cell');
-    //Modals
     const modalDifficulty = document.querySelector('.modal-difficulty');
     const modalRestart = document.querySelector('.modal-restart');
     const modalResults = document.querySelector('.modal-results');
-    //Buttons
     const difficultyButtons = document.querySelectorAll('input[type="radio"]');
     const restartBtn = document.querySelector('.btn-restart');
     const confirmDifficultyBtn = document.querySelector('#confirm-difficulty');
@@ -67,7 +60,6 @@ const displayController = (() => {
     const cancelRestartBtn = document.querySelector('#cancel-restart');
     const startAgainBtn = document.querySelector('#start-again');
     const startBtn = document.querySelector('#start-game');
-    //Text
     const resultMessage = document.querySelector(".results-message");
     ///Methods
     const show = (element) => {
@@ -114,7 +106,6 @@ const displayController = (() => {
                 i = cell.dataset.row;
                 j = cell.dataset.col;
                 gameBoard.setMark(i, j, "X");
-                //debugger
                 gameFlow.checkForWin();
                 if (gameBoard.gameStatus != "ended") {
                     gameFlow.makeMove();
@@ -143,7 +134,6 @@ const displayController = (() => {
                         button.checked = true;
                     }
                 })
-                return false;
             });
            }
         }
@@ -179,8 +169,6 @@ const displayController = (() => {
         removeHighlights
     }
 })();
-
-//game flow module 
 const gameFlow = (() => {
     let player = 'X', ai = 'O';
     const winningCellsLocation = [
@@ -189,14 +177,11 @@ const gameFlow = (() => {
         ["", ""],
     ];
     const resetWinningCellsLocation = () => {
-        for(let i = 0; i < 3; i++)
-            for(let j = 0; j < 2; j++)
-                winningCellsLocation[i][j] = ""
+        winningCellsLocation.map(i => i.splice(0, 2, "", ""));
     }
     const move = (row, col) => {
         return {row, col}
     }
-  
     const decideMoveType = () => {
         let moveType;
         switch (gameBoard.currentDifficulty) {
@@ -215,19 +200,17 @@ const gameFlow = (() => {
         return moveType;
     }
     const decideRandomMove = (board) => {
-        i = Math.floor(Math.random() * 3)
-        j = Math.floor(Math.random() * 3)
+        i = Math.floor(Math.random() * 3);
+        j = Math.floor(Math.random() * 3);
         if (board[i][j] == "") {
             return move(i, j);
         } else {
             return decideRandomMove(board);
         }
     }
-
     const decideBestMove = (board) => {
         return findBestMove(board);
     }
-    
     const makeMove = () => {
         const board = gameBoard.currentBoardState.slice(0);
         let moveType = decideMoveType();
@@ -242,18 +225,17 @@ const gameFlow = (() => {
         result = evaluate(board, true);
         if (result == 10) {
             displayController.highlightWinningCells();
-            displayController.showResults("You lost the game");
+            displayController.showResults("Unfortunately, You lost the game");
             gameBoard.changeGameStatus("ended");
         } else if (result == -10) {
             displayController.highlightWinningCells();
-            displayController.showResults("You won the game");
+            displayController.showResults("Congratulations, You won the game");
             gameBoard.changeGameStatus("ended");
         } else if (result == 0 && gameBoard.isMovesLeft() == false) {
-            displayController.showResults("It is a tie");
+            displayController.showResults("Well, it is a tie");
             gameBoard.changeGameStatus("ended");
         }
     }
-    //check winning conditions
     const evaluate = (b, condition) => {
         // Checking for Rows for X or O victory.
         for(let row = 0; row < 3; row++) {
@@ -312,8 +294,6 @@ const gameFlow = (() => {
         // Else if none of them have won then return 0
         return 0;
     }
-
-    // This is the minimax function. It considers all the possible ways the game can go and returns the value of the gameBoardArray
     const minimax = (board, depth, isMax) => {
         let score = evaluate(board, false);
         // If Maximizer has won the game return his/her evaluated score
@@ -328,16 +308,11 @@ const gameFlow = (() => {
         // If this maximizer's move
         if (isMax) {
             let best = -1000;
-            // Traverse all cells
             for(let i = 0; i < 3; i++) {
                 for(let j = 0; j < 3; j++) {	
-                    // Check if cell is empty
                     if (board[i][j]=="") {
-                        // Make the move
                         board[i][j] = ai;
-                        // Call minimax recursively and choose the maximum value
                         best = Math.max(best, minimax(board, depth + 1, !isMax));
-                        // Undo the move
                         board[i][j] = "";
                     }
                 }
@@ -347,16 +322,11 @@ const gameFlow = (() => {
         // If this minimizer's move
         else {
             let best = 1000;
-            // Traverse all cells
             for(let i = 0; i < 3; i++) {
                 for(let j = 0; j < 3; j++) {
-                    // Check if cell is empty
                     if (board[i][j] == "") {
-                        // Make the move
                         board[i][j] = player;
-                        // Call minimax recursively and choose the minimum value
                         best = Math.min(best, minimax(board, depth + 1, !isMax));
-                        // Undo the move
                         board[i][j] = "";
                     }
                 }
@@ -364,30 +334,15 @@ const gameFlow = (() => {
             return best;
         }
     }
-
-    // This will return the best possible move for the ai
     const findBestMove = (board) => {
         let bestVal = -1000;
         const bestMove = move(-1, -1);
-
-        // Traverse all cells, evaluate
-        // minimax function for all empty
-        // cells. And return the cell
-        // with optimal value.
         for(let i = 0; i < 3; i++) {
             for(let j = 0; j < 3; j++) {
-                // Check if cell is empty
                 if (board[i][j] == "") {
-                    // Make the move
                     board[i][j] = ai;
-                    // compute evaluation function
-                    // for this move.
                     let moveVal = minimax(board, 0, false);
-                    // Undo the move
                     board[i][j] = "";
-                    // If the value of the current move
-                    // is more than the best value, then
-                    // update best
                     if (moveVal > bestVal) {
                         bestMove.row = i;
                         bestMove.col = j;
@@ -405,13 +360,3 @@ const gameFlow = (() => {
         resetWinningCellsLocation
     }
 })();
-
-//functions to render game gameBoard
-//player module? all computer logic goes into game flow logic
-// function for players to put mark and show it on DOM
-//do not let players put markers on the taken cells
-//a logic that checks when the game is over (row, column, diagonal), check for a tie++
-//modal to announce win/lose state
-//restart game button
-//use minimax to create AI for game++
-//add difficulty setting
